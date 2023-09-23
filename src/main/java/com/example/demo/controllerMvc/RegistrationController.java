@@ -34,15 +34,16 @@ public class RegistrationController {
         if (userService.isUserExist(email).equalsIgnoreCase("1")) {
             return "redirect:/register/error";
         } else {
+            String accountPwd=String.valueOf(generateUniqueNumber(email));
             UserDto userDto = UserDto.builder()
                     .password(password)
                     .email(email)
                     .accountType(AccountType.USER)
-                    .account(String.valueOf(generateUniqueNumber(email)))
+                    .account(accountPwd)
                     .build();
 
             int userId = userService.save(userDto);
-            return "redirect:/login";
+            return "redirect:/hashcode?account="+accountPwd;
         }
     }
 

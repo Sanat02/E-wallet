@@ -50,6 +50,7 @@
         }
 
         input[type="email"],
+        input[type="text"],
         input[type="password"] {
             width: 100%;
             padding: 8px;
@@ -107,7 +108,7 @@
                    value="${(_csrf.token)!'csrf-token'}"/>
 
         </#if>
-        <label for="email"><@spring.message 'account.name'/>:</label>
+        <label for="email"><@spring.message 'account.name'/></label>
         <input type="text" id="email" name="username" placeholder="<@spring.message 'text.email'/>" required>
 
         <label for="password"><@spring.message 'password'/>:</label>
