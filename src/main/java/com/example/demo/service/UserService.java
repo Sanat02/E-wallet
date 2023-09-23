@@ -50,12 +50,28 @@ public class UserService {
         return userDtos;
     }
 
+    public Boolean isAccountExists(String account) {
+        return userRepository.existsByAccount(account);
+    }
+
+    public void subMoney(int amount, String account, String receiverAccount) {
+        int balance = userRepository.findUserByAccount(account).get().getBalance();
+        int total = balance - amount;
+        int receiverBalance = userRepository.findUserByAccount(receiverAccount).get().getBalance();
+        int receiverTotal = receiverBalance + amount;
+        userRepository.updateBalanceByAccount(account, total);
+        System.out.println();
+        userRepository.updateBalanceByAccount(receiverAccount, receiverTotal);
+
+    }
+
 
     public Optional<User> getUserByEmail(String email) {
         log.info("Gol user by email:" + email);
         Optional<User> mayBeUser = userRepository.findUserByEmail(email);
         return mayBeUser;
     }
+
     public Optional<User> getUserByAccount(String account) {
         log.info("Gol user by account:" + account);
         Optional<User> mayBeUser = userRepository.findUserByAccount(account);

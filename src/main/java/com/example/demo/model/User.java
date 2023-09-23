@@ -21,7 +21,7 @@ import java.util.*;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
+    private int id;
     private String email;
     private String password;
     private Boolean enabled;
@@ -33,8 +33,14 @@ public class User implements UserDetails {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @OneToMany(fetch= FetchType.LAZY,mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Language> languages;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sender")
+    private List<Transaction> senders;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "receiver")
+    private List<Transaction> receivers;
 
     private int balance;
 

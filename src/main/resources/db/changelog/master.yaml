@@ -11,4 +11,6 @@ databaseChangeLog:
       file: db/changelog/initial/036_add_token_reset_password.yaml
   - include:
       file: db/changelog/initial/037_create_lang.yaml
+  - include:
+      file: db/changelog/initial/038_create_transaction.yaml
 

@@ -9,11 +9,18 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User,Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
     Optional<User> findUserByEmail(String email);
+
     Optional<User> findUserByAccount(String account);
+
     Optional<User> findByResetPasswordToken(String token);
 
+    Boolean existsByAccount(String account);
 
+    @Transactional
+    @Modifying
+    @Query("UPDATE User u SET u.balance = :newBalance WHERE u.account = :accountValue")
+    int updateBalanceByAccount(@Param("accountValue") String accountValue, @Param("newBalance") int newBalance);
 }

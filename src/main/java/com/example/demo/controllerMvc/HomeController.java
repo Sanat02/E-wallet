@@ -1,24 +1,22 @@
 package com.example.demo.controllerMvc;
 
 
-
+import com.example.demo.dto.TransactionDto;
+import com.example.demo.service.TransactionService;
 import com.example.demo.service.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
-
 
 
 @Controller
@@ -27,6 +25,7 @@ import java.io.UnsupportedEncodingException;
 @Slf4j
 public class HomeController {
     private final UserService userService;
+    private final TransactionService transactionService;
 
 
     @GetMapping
@@ -37,11 +36,34 @@ public class HomeController {
         if (auth.getName().equals("anonymousUser")) {
             model.addAttribute("username", null);
         } else {
-//            model.addAttribute("username", auth.getName());
-             model.addAttribute("username", userService.mapToUserDto(userService.getUserByAccount(auth.getName()).get()));
+            model.addAttribute("username", userService.mapToUserDto(userService.getUserByAccount(auth.getName()).get()));
 
         }
         return "home";
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.SEE_OTHER)
+    public String sendMoney(
+            @RequestParam(name = "receiver") String receiver,
+            @RequestParam(name = "amount") int amount
+    ) {
+        if (userService.isAccountExists(receiver)) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (userService.getUserByAccount(auth.getName()).get().getBalance() < amount) {
+                return "redirect:/?account=balance";
+            } else {
+                TransactionDto transactionDto = TransactionDto.builder()
+                        .senderAccount(auth.getName())
+                        .receiverAccount(receiver)
+                        .amount(amount)
+                        .build();
+                transactionService.save(transactionDto);
+                return "redirect:/?account=success";
+            }
+        } else {
+            return "redirect:/?account=user";
+        }
     }
 
     @GetMapping("/forgot")
@@ -86,11 +108,12 @@ public class HomeController {
         }
         return "message";
     }
+
     @GetMapping("hashcode")
     public String getAccountCode(@RequestParam(name = "account", defaultValue = "No code") int account,
-                                 Model model){
-        model.addAttribute("account",account);
-        return"hashcode";
+                                 Model model) {
+        model.addAttribute("account", account);
+        return "hashcode";
 
     }
 }
