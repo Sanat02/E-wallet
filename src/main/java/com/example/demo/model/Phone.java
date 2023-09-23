@@ -3,7 +3,7 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+
 
 @Getter
 @Setter
@@ -23,6 +23,4 @@ public class Phone {
 
     private String phone;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "phone")
-    private List<Subscriber> subscribers;
 }

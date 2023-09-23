@@ -21,12 +21,8 @@ databaseChangeLog:
                     foreignKeyName: fk_service_name
                     references: services(id)
               - column:
-                  name: phone_id
-                  type: int
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_service_phone
-                    references: phones(id)
+                  name: phone
+                  type: varchar(255)
               - column:
                   name: act_date
                   type: TIMESTAMP

@@ -47,7 +47,7 @@
                     </li>
                     <#if username??>
                         <li class="nav-item">
-                            <a class="nav-link" href="/service">Service</a>
+                            <a class="nav-link" href="/service"><@spring.message 'service'/></a>
                         </li>
                     </#if>
                 </ul>
@@ -63,10 +63,8 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <@spring.message 'navbar.navi.lang'/>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="languageDropdown">
-                            <a class="dropdown-item" href="?lang=en">English</a>
-                            <a class="dropdown-item" href="?lang=ru">Русский</a>
-                        </div>
+                            <a class="#" href="?lang=en">English</a>
+                            <a class="#" href="?lang=ru">Русский</a>
                     </li>
                     <#if username??>
                         <li class="nav-item">
@@ -92,7 +90,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <#if username??>
-                        <h1 class="display-4"><@spring.message 'welcome'/> ${username.balance} som</h1>
+                        <h1 class="display-4"><@spring.message 'welcome'/> ${username.balance} <@spring.message 'som'/></h1>
                     </#if>
                     <#if username?? >
                         <div class="container">
@@ -105,18 +103,18 @@
                                            value="${(_csrf.token)!'csrf-token'}"/>
                                 </#if>
                                 <div class="form-group">
-                                    <label for="receiver">Receiver Account:</label>
+                                    <label for="receiver"><@spring.message 'account.name'/> </label>
                                     <input type="text" class="form-control" id="receiver" name="receiver"
-                                           placeholder="Receiver Account Code"
+                                           placeholder="<@spring.message 'enter.account.name'/> "
                                            required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="amount">Amount:</label>
+                                    <label for="amount"><@spring.message 'amount'/> :</label>
                                     <input type="number" class="form-control" id="amount" name="amount"
-                                           placeholder="Amount" required
+                                           placeholder="<@spring.message 'amount'/>" required
                                            min="0">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Send</button>
+                                <button type="submit" class="btn btn-primary"><@spring.message 'send'/></button>
                             </form>
                         </div>
                     </#if>
@@ -146,16 +144,16 @@
 
     if (accountValue === "user") {
         const warningDiv = document.getElementById("warning");
-        warningDiv.textContent = "INVALID USER!";
+        warningDiv.textContent = "<@spring.message 'invalidUser'/>";
     } else if (accountValue === "balance") {
         const warningDiv = document.getElementById("warning");
-        warningDiv.textContent = "NOT ENOUGH MONEY ON YOU BALANCE!";
+        warningDiv.textContent = "<@spring.message 'notE'/>";
     } else if (accountValue === "success") {
         const successDiv = document.getElementById("success");
-        successDiv.textContent = "SUCCESS!";
+        successDiv.textContent = "<@spring.message 'succes'/>";
     } else if (accountValue === "yourself") {
         const yourselfDiv = document.getElementById("your");
-        yourselfDiv.textContent = "YOU CAN'T TRANSFER MONEY TO YOURSELF!";
+        yourselfDiv.textContent = "<@spring.message 'noTransfer'/>";
     }
 </script>
 </body>

@@ -21,9 +21,8 @@ public class Subscriber {
     @JoinColumn(name = "service_id")
     private ServiceL service;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "phone_id")
-    private Phone phone;
+
+    private String phone;
 
     private int balance;
     private Timestamp actDate;

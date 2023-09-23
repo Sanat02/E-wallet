@@ -79,15 +79,14 @@
 
 <main>
     <div class="container mt-5">
-        <h1>Money Transfer</h1>
         <form>
             <div class="form-group">
                 <label for="amount">Amount of Money:</label>
-                <input type="number" class="form-control" id="amount" name="amount" min="0" required>
+                <input type="number" class="form-control" id="amount" name="balance" min="0" required>
             </div>
             <div class="form-group">
                 <label for="account">User Phone</label>
-                <input type="text" class="form-control" id="account" name="account" required>
+                <input type="text" class="form-control" id="account" name="phone" required>
             </div>
             <button type="submit" class="btn btn-primary">Transfer Money</button>
         </form>
