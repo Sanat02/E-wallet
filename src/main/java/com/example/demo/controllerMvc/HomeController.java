@@ -31,11 +31,10 @@ import java.util.Collection;
 @Slf4j
 public class HomeController {
     private final UserService userService;
-    private final LanguageService languageService;
+   
 
     @GetMapping
-    public String getHomePage(Model model,
-                              @RequestParam(name = "lang", defaultValue = "en") String language) {
+    public String getHomePage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 
@@ -43,12 +42,6 @@ public class HomeController {
             model.addAttribute("username", null);
         } else {
             model.addAttribute("username", auth.getName());
-            UserDto user=userService.mapToUserDto(userService.getUserByEmail(auth.getName()).get());
-            languageService.save(LanguageDto.builder()
-                            .language(language)
-                            .user(user)
-                    .build());
-
         }
         return "home";
     }

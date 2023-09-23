@@ -107,8 +107,8 @@
                    value="${(_csrf.token)!'csrf-token'}"/>
 
         </#if>
-        <label for="email"><@spring.message 'email'/>:</label>
-        <input type="email" id="email" name="username" placeholder="<@spring.message 'text.email'/>" required>
+        <label for="email"><@spring.message 'account.name'/>:</label>
+        <input type="text" id="email" name="username" placeholder="<@spring.message 'text.email'/>" required>
 
         <label for="password"><@spring.message 'password'/>:</label>
         <input type="password" id="password" name="password" placeholder="<@spring.message 'text.password'/>" required>

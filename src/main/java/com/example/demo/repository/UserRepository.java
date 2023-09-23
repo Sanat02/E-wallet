@@ -12,10 +12,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User,Integer> {
 
     Optional<User> findUserByEmail(String email);
+    Optional<User> findUserByAccount(String account);
     Optional<User> findByResetPasswordToken(String token);
 
-//    @Modifying
-//    @Transactional
-//    @Query("UPDATE User u SET u.accountName = :accountName, u.email = :email, u.password = :password, u.phoneNumber = :phoneNumber WHERE u.id = :id")
-//    void updateUser(@Param("id") int id, @Param("accountName") String accountName, @Param("email") String email, @Param("password") String password, @Param("phoneNumber") String phoneNumber);
+
 }
