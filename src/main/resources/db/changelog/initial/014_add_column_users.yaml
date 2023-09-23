@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: addColumnToUsers
+      author: Sanat
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: phone_number
+                  type: varchar(50)
+
+

@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 032-create-chat-table
+      author: Sanat
+      changes:
+        - createTable:
+            tableName: chats
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: userId
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_chat_user_id
+                    nullable: false
+                    references: users(id)
+              - column:
+                  name: employerId
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_chat_employer_id
+                    nullable: false
+                    references: users(id)
+              - column:
+                  name: message
+                  type: varchar(1000)
+              - column:
+                  name: messageDate
+                  type: date

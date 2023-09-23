@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: drop  fk_chat_user
+      author: Sanat
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: chats
+            constraintName: fk_chat_user_id
+  - changeSet:
+      id: drop  fk_chat_employer
+      author: Sanat
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: chats
+            constraintName: fk_chat_employer_id
+  - changeSet:
+      id: add new fk_chat_user_id
+      author: Sanat
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: chats
+            baseColumnNames: userId
+            constraintName: fk_chat_user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: cascade
+            onUpdate: cascade
+  - changeSet:
+      id: add new  fk_chat_employer_id
+      author: Sanat
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: chats
+            baseColumnNames: employerId
+            constraintName: fk_chat_employer_id
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: cascade
+            onUpdate: cascade

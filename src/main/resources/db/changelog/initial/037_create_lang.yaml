@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 037-create-language-table
+      author: Sanat
+      changes:
+        - createTable:
+            tableName: language
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_language_user
+                    references: users(id)
+              - column:
+                  name: language
+                  type: varchar(30)
+                  constraints:
+                    nullable: true
+
+
+

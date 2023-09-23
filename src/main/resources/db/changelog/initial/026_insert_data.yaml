@@ -1,0 +1,324 @@
+databaseChangeLog:
+  - changeSet:
+      id: insertDataAuthority
+      author: admin
+      changes:
+        - sql:
+            comment: Insert data into authority
+            sql: |
+              insert into authorities (authority)
+              values('FULL'), ('READ_ONLY');
+
+  - changeSet:
+      id: insertDataRoles
+      author: admin
+      changes:
+        - sql:
+            comment: Insert data into roles
+            sql: |
+              insert into roles(role, authority_id)
+              values ('EMPLOYER', (select id from authorities where authority = 'FULL')),
+                ('JOB_SEEKER', (select id from authorities where authority = 'FULL'));
+  - changeSet:
+      id: insertDataUsers
+      author: admin
+      changes:
+        - sql:
+            sql: |
+              insert into users(email, account_name, password, enabled, role_id, phone_number)
+              VALUES (
+                'qwe@qwe.qwe', 
+                'qwe', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                 1,
+                '777888999'
+              ),
+              (
+                'ewq@ewq.com',
+                'ewq',
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2',
+                TRUE,
+                 2,
+                '777888999'
+              ),
+              (
+                'lia@gmail.com', 
+                'Liana Ro', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                 1,
+                '777888999'
+              ),
+              (
+                'ricky@gmail.com', 
+                'Ricky Martin', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                 1,
+                 '777888999'
+              ),
+              (
+                'sara@gmail.com', 
+                'Sara Gio', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'ariana@gmail.com', 
+                'Arina June', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'rosa@gmail.com', 
+                'Rosa Kim', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'sultan@gmail.com', 
+                'Sultan Ers', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'michael@gmail.com', 
+                'Michael Murrey', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'eddie@gmail.com', 
+                'Eddie Ro', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'amanda@gmail.com', 
+                'Amanda Kronk', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'siajo@gmail.com', 
+                'Joe Dro', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'doras@gmail.com', 
+                'Sira Ro', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'kamila20@gmail.com', 
+                'Kamila Li', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'jyldyz@gmail.com', 
+                'Jyldyz Abjunushova', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE,
+                1,
+                '777888999'
+              ),
+              (
+                'john.doe@example.com', 
+                'John Doe', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'jane.smith@example.com', 
+                'Jane Smith', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'michael.johnson@example.com', 
+                'Michael Johnson', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'emily.davis@example.com', 
+                'Emily Davis', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'william.brown@example.com', 
+                'William Brown', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'sophia.wilson@example.com', 
+                'Sophia Wilson', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'james.miller@example.com', 
+                'James Miller', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'olivia.martinez@example.com', 
+                'Olivia Martinez', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'alexander.rodriguez@example.com', 
+                'Alexander Rodriguez', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'isabella.lee@example.com', 
+                'Isabella Lee', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'mason.clark@example.com', 
+                'Mason Clark', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'mia.walker@example.com', 
+                'Mia Walker', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'ethan.hall@example.com', 
+                'Ethan Hall', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'ava.young@example.com', 
+                'Ava Young', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'benjamin.king@example.com', 
+                'Benjamin King', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'scarlett.perez@example.com', 
+                'Scarlett Perez', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'henry.garcia@example.com', 
+                'Henry Garcia', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'abigail.foster@example.com', 
+                'Abigail Foster', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'amelia.wright@example.com', 
+                'Amelia Wright', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'samuel.green@example.com', 
+                'Samuel Green', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+              (
+                'victoria.hall@example.com', 
+                'Victoria Hall', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                2, 
+                '777888999'
+              ),
+               (
+                'kianu.hall@example.com', 
+                'Kianu Hall', 
+                '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
+                TRUE, 
+                1, 
+                '777888999'
+              );
