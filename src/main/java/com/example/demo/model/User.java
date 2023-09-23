@@ -22,12 +22,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int id;
-    private String accountName;
     private String email;
     private String password;
-    private String phoneNumber;
     private Boolean enabled;
     private String resetPasswordToken;
+    private String account;
 
 
     @ManyToOne(fetch = FetchType.EAGER)

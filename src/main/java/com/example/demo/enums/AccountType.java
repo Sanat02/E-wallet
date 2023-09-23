@@ -1,8 +1,8 @@
 package com.example.demo.enums;
 
 public enum AccountType {
-    JOB_SEEKER("Job Seeker"),
-    EMPLOYER("Employer");
+    USER("User"),
+    ADMIN("Admin");
     private String value;
 
     AccountType(String value) {

@@ -87,7 +87,6 @@
         }
 
 
-
         .login-divider hr {
             position: absolute;
             top: 50%;
@@ -95,8 +94,6 @@
             width: 100%;
             margin: 0;
         }
-
-
 
 
     </style>
@@ -111,24 +108,12 @@
 
         </#if>
 
-        <label for="account_name"><@spring.message 'account.name'/></label>
-        <input type="text" id="account_name" name="account_name" placeholder="<@spring.message 'enter.account.name'/>" required>
 
         <label for="email"><@spring.message 'email'/>:</label>
         <input type="email" id="email" name="email" placeholder="<@spring.message 'text.email'/>" required>
 
         <label for="password"><@spring.message 'password'/>:</label>
         <input type="password" id="password" name="password" placeholder="<@spring.message 'text.password'/>" required>
-
-        <label for="account_type"><@spring.message 'account.type'/></label>
-        <select id="account_type" name="account_type" required>
-            <option value=""><@spring.message 'select.account.type'/></option>
-            <option value="jobseeker"><@spring.message 'job.seeker'/></option>
-            <option value="employer"><@spring.message 'employer'/></option>
-        </select>
-
-        <label for="phone_number"><@spring.message 'phone.number'/></label>
-        <input type="tel" id="phone_number" name="phone_number" placeholder="<@spring.message 'enter.phone.number'/>" required>
 
         <input type="submit" value="<@spring.message 'register'/>">
     </form>

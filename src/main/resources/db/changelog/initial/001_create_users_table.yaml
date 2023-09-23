@@ -14,9 +14,6 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: account_name
-                  type: varchar(255)
-              - column:
                   name: email
                   type: varchar(255)
               - column:
@@ -29,11 +26,14 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: fk_users_role
                     references: roles(id)
-                    onDelete: CASCADE
-                    onUpdate: CASCADE
               - column:
                   name: enabled
                   type: boolean
+                  constraints:
+                    nullable: true
+              - column:
+                  name: account
+                  type: varchar(255)
                   constraints:
                     nullable: true
 

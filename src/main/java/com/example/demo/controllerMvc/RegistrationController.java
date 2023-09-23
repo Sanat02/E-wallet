@@ -25,33 +25,37 @@ public class RegistrationController {
     @PostMapping()
     @ResponseStatus(HttpStatus.SEE_OTHER)
     public String addResume(
-            @RequestParam(name = "account_name") String accountName,
             @RequestParam(name = "email") String email,
-            @RequestParam(name = "password") String password,
-            @RequestParam(name = "account_type") String accountValue,
-            @RequestParam(name = "phone_number") String phoneNumber
+            @RequestParam(name = "password") String password
+
     ) {
-        AccountType accountType;
-        if (accountValue.equalsIgnoreCase(AccountType.EMPLOYER.getValue())) {
-            accountType = AccountType.EMPLOYER;
-        } else {
-            accountType = AccountType.JOB_SEEKER;
-        }
+
 
         if (userService.isUserExist(email).equalsIgnoreCase("1")) {
             return "redirect:/register/error";
         } else {
             UserDto userDto = UserDto.builder()
                     .password(password)
-                    .accountName(accountName)
                     .email(email)
-                    .phoneNumber(phoneNumber)
-                    .accountType(accountType)
+                    .accountType(AccountType.USER)
+                    .account(String.valueOf(generateUniqueNumber(email)))
                     .build();
 
             int userId = userService.save(userDto);
             return "redirect:/login";
         }
+    }
+
+    public static int generateUniqueNumber(String userEmail) {
+        int hashCode = userEmail.hashCode();
+        hashCode = Math.abs(hashCode);
+        int uniqueNumber = hashCode % 1_000_000;
+
+        if (uniqueNumber < 100_000) {
+            uniqueNumber += 100_000;
+        }
+
+        return uniqueNumber;
     }
 
 

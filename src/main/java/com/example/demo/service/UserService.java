@@ -30,7 +30,6 @@ public class UserService {
 
 
     private final UserRepository userRepository;
-    private final ProfileImageService profileImageService;
     private final PasswordEncoder encoder;
     private final RoleService roleService;
     private final EmailService emailService;
@@ -42,12 +41,9 @@ public class UserService {
         List<UserDto> userDtos = users.stream()
                 .map(e -> UserDto.builder()
                         .id(e.getId())
-                        .phoneNumber(e.getPhoneNumber())
                         .accountType(getAccountType(e.getRole().getId().intValue()))
                         .password(e.getPassword())
                         .email(e.getEmail())
-                        .accountName(e.getAccountName())
-                        .profileImage(profileImageService.getImageByUserId(e.getId()))
                         .build()
                 ).collect(Collectors.toList());
 
@@ -85,36 +81,27 @@ public class UserService {
 
 
     public int save(UserDto userDto) {
-        int roleId = userDto.getAccountType().equals(AccountType.JOB_SEEKER) ? 2 : 1;
         log.info("The user:" + userDto.getEmail() + " is saved!");
         return userRepository.save(User.builder()
-                .accountName(userDto.getAccountName())
                 .email(userDto.getEmail())
                 .password(encoder.encode(userDto.getPassword()))
-                .phoneNumber(userDto.getPhoneNumber())
                 .enabled(true)
-                .role(roleService.getRoleById(roleId))
+                .role(roleService.getRoleById(1))
+                .account(userDto.getAccount())
                 .build()).getId();
 
     }
 
-    public void update(UserDto userDto) {
-        log.info("The user:" + userDto.getEmail() + " is updated!");
-        userRepository.updateUser(userDto.getId(), userDto.getAccountName(),
-                userDto.getEmail(), userDto.getPassword(), userDto.getPhoneNumber());
-    }
 
     public UserDto mapToUserDto(User user) {
         if (user != null) {
             return UserDto.builder()
                     .id(user.getId())
-                    .accountName(user.getAccountName())
                     .email(user.getEmail())
                     .accountType(getAccountType(user.getRole().getId().intValue()))
                     .password(user.getPassword())
-                    .phoneNumber(user.getPhoneNumber())
-                    .profileImage(profileImageService.getImageByUserId(user.getId()))
                     .resetPasswordToken(user.getResetPasswordToken())
+                    .account(user.getAccount())
                     .build();
         } else {
             return null;
@@ -123,9 +110,9 @@ public class UserService {
 
     public AccountType getAccountType(int num) {
         if (num == 1) {
-            return AccountType.EMPLOYER;
+            return AccountType.USER;
         }
-        return AccountType.JOB_SEEKER;
+        return AccountType.ADMIN;
     }
 
     private void updateResetPasswordToken(String token, String email) {
@@ -153,5 +140,7 @@ public class UserService {
         String resetPasswordLink = Utility.getSiteUrl(request) + "/reset?token=" + token;
         emailService.sendEmail(email, resetPasswordLink);
     }
+
+
 
 }
