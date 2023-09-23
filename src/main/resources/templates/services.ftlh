@@ -48,7 +48,7 @@
                         <a class="nav-link" href="/"><@spring.message 'navbar.navi.home'/></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/service">Service</a>
+                        <a class="nav-link" href="/service"><@spring.message 'service'/></a>
                     </li>
                 </ul>
 
@@ -59,14 +59,10 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <@spring.message 'navbar.navi.lang'/>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="languageDropdown">
-                            <a class="dropdown-item" href="?lang=en">English</a>
-                            <a class="dropdown-item" href="?lang=ru">Русский</a>
-                        </div>
+                        <a class="nav-link" href="?lang=en">English</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="?lang=ru">Русский</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout"><@spring.message 'logout'/></a>

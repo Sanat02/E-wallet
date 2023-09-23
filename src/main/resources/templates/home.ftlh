@@ -59,12 +59,10 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <@spring.message 'navbar.navi.lang'/>
-                        </a>
-                            <a class="#" href="?lang=en">English</a>
-                            <a class="#" href="?lang=ru">Русский</a>
+                        <a class="nav-link" href="?lang=en">English</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="?lang=ru">Русский</a>
                     </li>
                     <#if username??>
                         <li class="nav-item">
