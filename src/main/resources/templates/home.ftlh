@@ -23,7 +23,8 @@
         color: green;
         font-size: 16px;
     }
-    #your{
+
+    #your {
         color: orange;
         font-size: 16px;
     }
@@ -42,8 +43,13 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#section_1"><@spring.message 'navbar.navi.home'/></a>
+                        <a class="nav-link" href="#"><@spring.message 'navbar.navi.home'/></a>
                     </li>
+                    <#if username??>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/service">Service</a>
+                        </li>
+                    </#if>
                 </ul>
 
                 <ul class="navbar-nav">
@@ -147,7 +153,7 @@
     } else if (accountValue === "success") {
         const successDiv = document.getElementById("success");
         successDiv.textContent = "SUCCESS!";
-    }else if (accountValue === "yourself") {
+    } else if (accountValue === "yourself") {
         const yourselfDiv = document.getElementById("your");
         yourselfDiv.textContent = "YOU CAN'T TRANSFER MONEY TO YOURSELF!";
     }

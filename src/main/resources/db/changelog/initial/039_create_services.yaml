@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 039-create-services-table
+      author: Sanat
+      changes:
+        - createTable:
+            tableName: services
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: service
+                  type: varchar(255)

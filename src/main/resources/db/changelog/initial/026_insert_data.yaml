@@ -40,5 +40,5 @@ databaseChangeLog:
                 TRUE,
                  1,
                 '777999',
-                 1000
+                1000
               );

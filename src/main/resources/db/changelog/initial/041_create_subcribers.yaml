@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 041-create-subscribers-table
+      author: Sanat
+      changes:
+        - createTable:
+            tableName: subscribers
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: service_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_service_name
+                    references: services(id)
+              - column:
+                  name: phone_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_service_phone
+                    references: phones(id)
+              - column:
+                  name: act_date
+                  type: TIMESTAMP
+              - column:
+                  name: balance
+                  type: int
+
+
+
+

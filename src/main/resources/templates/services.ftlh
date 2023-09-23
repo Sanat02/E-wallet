@@ -19,16 +19,15 @@
         margin-top: 30px;
     }
 
-    #green {
-        background-color: green;
-        border-color: green;
-        width: 130px;
+    .service-card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        border-radius: 5px;
+        margin: 10px;
     }
 
-    #blue {
-        width: 130px;
-        border-color: red;
-        background-color: red;
+    .service-card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     }
 </style>
 
@@ -55,7 +54,7 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/#">
+                        <a class="nav-link" href="/profile">
                             <i class="fas fa-user"></i>
                         </a>
                     </li>
@@ -79,41 +78,22 @@
 </header>
 
 <main>
-    <div class="container mt-4">
-        <h2>Transaction History</h2>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Sender</th>
-                <th>Receiver</th>
-                <th>Sum</th>
-                <th>Date</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <#list transactions as transaction >
-                <tr>
-                    <td>${transaction.senderAccount}</td>
-                    <td>${transaction.receiverAccount}</td>
-                    <td>${transaction.amount} som</td>
-                    <td>${transaction.actDate}</td>
-                    <#if transaction.senderAccount==user.account>
-                        <td>
-                            <a href="#" id="blue" class="btn btn-primary">Debit</a>
-                        </td>
-                    <#else>
-                        <td>
-                            <a href="#" id="green" class="btn btn-primary">Transfer</a>
-                        </td>
-                    </#if>
-                </tr>
+    <div class="container mt-5">
+        <h1>List of Services</h1>
+        <div class="row">
+            <#list services as service>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <div class="card-body">
+                        <h5 class="card-title">${service.service}</h5>
+                        <p class="card-text">Description of Mbank service.</p>
+                        <a href="#" class="btn btn-primary">Perform</a>
+                    </div>
+                </div>
+            </div>
             </#list>
-
-            </tbody>
-        </table>
+        </div>
     </div>
-
 
 </main>
 

@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: insertDataSevices
+      author: admin
+      changes:
+        - sql:
+            sql: |
+              insert into services(service)
+              VALUES (
+                'Mbank'
+              ),
+              (
+                'PayPal'
+              ),
+              (
+                'GooglPay'
+              );
