@@ -48,18 +48,23 @@ public class HomeController {
             @RequestParam(name = "receiver") String receiver,
             @RequestParam(name = "amount") int amount
     ) {
+
         if (userService.isAccountExists(receiver)) {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if (userService.getUserByAccount(auth.getName()).get().getBalance() < amount) {
                 return "redirect:/?account=balance";
             } else {
-                TransactionDto transactionDto = TransactionDto.builder()
-                        .senderAccount(auth.getName())
-                        .receiverAccount(receiver)
-                        .amount(amount)
-                        .build();
-                transactionService.save(transactionDto);
-                return "redirect:/?account=success";
+                if (receiver.equals(auth.getName())) {
+                    return "redirect:/?account=yourself";
+                } else {
+                    TransactionDto transactionDto = TransactionDto.builder()
+                            .senderAccount(auth.getName())
+                            .receiverAccount(receiver)
+                            .amount(amount)
+                            .build();
+                    transactionService.save(transactionDto);
+                    return "redirect:/?account=success";
+                }
             }
         } else {
             return "redirect:/?account=user";

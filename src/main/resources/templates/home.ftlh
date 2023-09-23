@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home Page</title>
+
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
@@ -21,6 +21,10 @@
 
     #success {
         color: green;
+        font-size: 16px;
+    }
+    #your{
+        color: orange;
         font-size: 16px;
     }
 </style>
@@ -44,7 +48,7 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.html">
+                        <a class="nav-link" href="/profile">
                             <i class="fas fa-user"></i>
                         </a>
                     </li>
@@ -88,6 +92,7 @@
                         <div class="container">
                             <div id="warning"></div>
                             <div id="success"></div>
+                            <div id="your"></div>
                             <form action="/" method="post">
                                 <#if _csrf??>
                                     <input type="hidden" name="${(_csrf.parameterName)!'csrf-param-name'}"
@@ -142,6 +147,9 @@
     } else if (accountValue === "success") {
         const successDiv = document.getElementById("success");
         successDiv.textContent = "SUCCESS!";
+    }else if (accountValue === "yourself") {
+        const yourselfDiv = document.getElementById("your");
+        yourselfDiv.textContent = "YOU CAN'T TRANSFER MONEY TO YOURSELF!";
     }
 </script>
 </body>
