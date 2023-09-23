@@ -46,6 +46,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/profile")).authenticated()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/service")).authenticated()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/service/{serviceId}")).authenticated()
                         .anyRequest().permitAll()
 
 

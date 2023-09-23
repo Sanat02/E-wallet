@@ -29,8 +29,6 @@ public class RegistrationController {
             @RequestParam(name = "password") String password
 
     ) {
-
-
         if (userService.isUserExist(email).equalsIgnoreCase("1")) {
             return "redirect:/register/error";
         } else {

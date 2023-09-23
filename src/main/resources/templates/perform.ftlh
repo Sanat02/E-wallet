@@ -79,19 +79,20 @@
 
 <main>
     <div class="container mt-5">
-        <h1>List of Services</h1>
-        <div class="row">
-            <#list services as service>
-                <div class="col-md-4">
-                    <div class="card service-card">
-                        <div class="card-body">
-                            <h5 class="card-title">${service.service}</h5>
-                            <p class="card-text">Description of Mbank service.</p>
-                            <a href="/service/${service.id}" class="btn btn-primary">Perform</a>
-                        </div>
-                    </div>
-                </div>
-            </#list>
+        <h1>Money Transfer</h1>
+        <form>
+            <div class="form-group">
+                <label for="amount">Amount of Money:</label>
+                <input type="number" class="form-control" id="amount" name="amount" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="account">User Phone</label>
+                <input type="text" class="form-control" id="account" name="account" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Transfer Money</button>
+        </form>
+        <div class="form-group">
+            <label for="subscribe">No subscription? <a href="/service/${service.id}/subscribe">Subscribe</a></label>
         </div>
     </div>
 

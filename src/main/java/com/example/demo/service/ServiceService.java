@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 
+import java.security.Provider;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,9 +22,21 @@ public class ServiceService {
         List<ServiceL> services = serviceRepository.findAll();
         List<ServiceDto> serviceDtos = services.stream()
                 .map(e -> ServiceDto.builder()
+                        .id(e.getId())
                         .service(e.getService())
                         .build()
                 ).collect(Collectors.toList());
         return serviceDtos;
+    }
+
+    public ServiceDto getServiceById(int serviceId) {
+        ServiceL service = serviceRepository.findById(serviceId).orElse(null);
+        if (service == null) {
+            return null;
+        }
+        return ServiceDto.builder()
+                .id(service.getId())
+                .service(service.getService())
+                .build();
     }
 }
