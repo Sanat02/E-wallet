@@ -56,6 +56,11 @@ public class UserService {
         Optional<User> mayBeUser = userRepository.findUserByEmail(email);
         return mayBeUser;
     }
+    public Optional<User> getUserByAccount(String account) {
+        log.info("Gol user by account:" + account);
+        Optional<User> mayBeUser = userRepository.findUserByAccount(account);
+        return mayBeUser;
+    }
 
     public String isUserExist(String email) {
         try {
@@ -88,6 +93,7 @@ public class UserService {
                 .enabled(true)
                 .role(roleService.getRoleById(1))
                 .account(userDto.getAccount())
+                .balance(1000)
                 .build()).getId();
 
     }
@@ -102,6 +108,7 @@ public class UserService {
                     .password(user.getPassword())
                     .resetPasswordToken(user.getResetPasswordToken())
                     .account(user.getAccount())
+                    .balance(user.getBalance())
                     .build();
         } else {
             return null;
@@ -140,7 +147,6 @@ public class UserService {
         String resetPasswordLink = Utility.getSiteUrl(request) + "/reset?token=" + token;
         emailService.sendEmail(email, resetPasswordLink);
     }
-
 
 
 }

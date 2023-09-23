@@ -36,6 +36,10 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: true
+              - column:
+                  name: balance
+                  type: int
+
 
 
 

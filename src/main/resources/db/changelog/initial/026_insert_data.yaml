@@ -25,18 +25,20 @@ databaseChangeLog:
       changes:
         - sql:
             sql: |
-              insert into users(email,password, enabled, role_id, account)
+              insert into users(email,password, enabled, role_id, account,balance)
               VALUES (
                 'qwe@qwe.qwe', 
                 '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2', 
                 TRUE,
                  1,
-                '777888'
+                '777888',
+                 1000
               ),
               (
                 'ewq@ewq.com',
                 '$2a$12$WB2YUbFcCN0tm44SBcKUjua9yiFBsfB3vW02IjuwzY7HGtlQIKzy2',
                 TRUE,
                  1,
-                '777999'
+                '777999',
+                 1000
               );

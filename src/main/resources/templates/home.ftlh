@@ -69,7 +69,9 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
-                    <h1 class="display-4"><@spring.message 'welcome'/></h1>
+                    <#if username??>
+                    <h1 class="display-4"><@spring.message 'welcome'/> ${username.balance} som</h1>
+                    </#if>
                     <form method="get" class="mt-4">
                         <div class="input-group">
                             <input name="keyword" type="search" class="form-control"

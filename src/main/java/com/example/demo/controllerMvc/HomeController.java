@@ -37,7 +37,9 @@ public class HomeController {
         if (auth.getName().equals("anonymousUser")) {
             model.addAttribute("username", null);
         } else {
-            model.addAttribute("username", auth.getName());
+//            model.addAttribute("username", auth.getName());
+             model.addAttribute("username", userService.mapToUserDto(userService.getUserByAccount(auth.getName()).get()));
+
         }
         return "home";
     }

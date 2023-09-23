@@ -36,6 +36,8 @@ public class User implements UserDetails {
     @OneToMany(fetch= FetchType.LAZY,mappedBy = "user")
     private List<Language> languages;
 
+    private int balance;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority(role.getRole()));

@@ -18,6 +18,7 @@ public class UserDto {
 
 
     private AccountType accountType;
+    private int balance;
 
     @NotBlank
     @Size(min = 4, max = 24, message = "Length must be >= 4 and <= 24")
